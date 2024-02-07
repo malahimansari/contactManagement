@@ -28,4 +28,11 @@ router.post(
   contact_Controller.create_contact
 );
 
+/**
+ * @route PUT /api/v1/contacts
+ * @desc Update contact by id
+ * @access private
+ */
+router.put('/:id', auth, contact_Controller.update_contact );
+
 module.exports = router;

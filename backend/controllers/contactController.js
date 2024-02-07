@@ -39,4 +39,33 @@ const create_contact = async (req, res) => {
   }
 };
 
-module.exports = { create_contact, get_contact };
+const update_contact = async (req, res) => {
+  const id = req.params.id;
+  const { name, email, phone, relation } = req.body;
+  try {
+    const contactFields = {};
+    if (name) contactFields.name = name;
+    if (email) contactFields.email = email;
+    if (phone) contactFields.phone = phone;
+    if (relation) contactFields.relation = relation;
+
+    let contact = await Contact.findById(id);
+
+    if (!contact) {
+      return res.status(401).json({ msg: "Invalid Authorization" });
+    }
+
+    contact = await Contact.findByIdAndUpdate(
+      id,
+      { $set: contactFields },
+      { new: true }
+    );
+
+    return res.json(contact);
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ msg: "Server Error" });
+  }
+};
+
+module.exports = { create_contact, get_contact, update_contact };

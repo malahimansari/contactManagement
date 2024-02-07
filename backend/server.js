@@ -8,8 +8,7 @@ connectDB();
 
 //Routes
 app.use('/api/v1/users/', require('./routes/userRoutes'));
-// app.use('/api/v1/auth/', './routes/authRoutes');
-// app.use('/api/v1/contacts/', './routes/contactRoutes');
+app.use('/api/v1/contacts/', require('./routes/contactRoutes'));
 
 
 const PORT = process.env.PORT || 5000;

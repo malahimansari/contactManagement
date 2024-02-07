@@ -33,6 +33,13 @@ router.post(
  * @desc Update contact by id
  * @access private
  */
-router.put('/:id', auth, contact_Controller.update_contact );
+router.put("/:id", auth, contact_Controller.update_contact);
+
+/**
+ * @route Delete /api/v1/contacts/:id
+ * @desc Delete contact by id
+ * @access private
+ */
+router.delete("/:id", auth, contact_Controller.delete_contact);
 
 module.exports = router;
